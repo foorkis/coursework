@@ -1,7 +1,7 @@
-#ifndef  _RBTREEH_
-#define  _RBTREEH_
+#ifndef  RBTREE_H
+#define  RBTREE_H
 
-#define NULL    0
+//#define NULL    0
 
 typedef int rbKeyT;
 
@@ -18,7 +18,7 @@ struct RBtree
     rbColorT color;
 };
 
-RBtree* rbNewNode(rbKeyT key);
+RBtree* newNode(rbKeyT key);
 
 RBtree* search(RBtree* root, rbKeyT key);
 
@@ -40,4 +40,4 @@ void postorderTreeWalk(RBtree* root);
 RBtree* deleteByKey (RBtree* root,rbKeyT key);
 RBtree* deleteFixup(RBtree* root,RBtree* x,RBtree* parent);
 
-#endif
+#endif // #ifdef RBTREE_H

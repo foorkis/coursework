@@ -1,4 +1,4 @@
-#include "RBTree.h"
+#include "rbtree.h"
 #include <iostream>
 
 using namespace std;
@@ -255,10 +255,12 @@ int height(RBtree* root)
     }
     else
     {
-        leftHeight=rbTreeHeight(root->left);
-        rightHeight=rbTreeHeight(root->right);
+        leftHeight=height(root->left);
+        rightHeight=height(root->right);
 
-        return (leftHeight>rightHeight?(leftHeight+1):(rightHeight+1));
+        return (leftHeight>rightHeight
+		? (leftHeight+1)
+		: (rightHeight+1));
     }
 }
 
@@ -445,3 +447,14 @@ RBtree* deleteFixup(RBtree* root,RBtree* x,RBtree* parent)
     root->color=BLACK;
     return root;
 }
+/*
+RBtree* readFromFile()
+{
+    FILE* myFile;
+    myFile = fopen("tree_file", "r");
+    if (myFile == NULL) cout << "Error opening file\n";
+    else
+    {
+	while (!feof (myFile))
+}
+*/
