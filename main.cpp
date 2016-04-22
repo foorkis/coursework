@@ -7,7 +7,7 @@ using namespace std;
 
 int main()
 {
-    /*
+    /*   
     int i, count = 9;
     rbKeyT key;
     RBtree* root = NULL, *node = NULL;
@@ -20,19 +20,20 @@ int main()
 	root=insert(root,key);
     }
 
+    preorderTreeWalk(root);
+
     for (i=1;i<=count;i++)
     {
 	cin>>key;
 	cout<<i<<" delete key "<<key;
 	root=deleteByKey(root,key);
     }
-
-    FILE * file;
-    char buffer [1000];
-
-    file = fopen("tree_file", "r");
     */
+    // FILE * file;
+    // char buffer [1000];
+
+    // file = fopen("tree_file", "r");
+    // printHelp();
     printHelp();
-    
     return 0;
 }
