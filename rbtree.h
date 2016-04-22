@@ -1,9 +1,13 @@
 #ifndef  RBTREE_H
 #define  RBTREE_H
 
-//#define NULL    0
+#include <fstream>
+#include <string>
+#include <cstdio>
 
-typedef int rbKeyT;
+using std::string;
+
+//#define NULL    0
 
 enum rbColorT
 {
@@ -14,18 +18,19 @@ enum rbColorT
 struct RBtree 
 {
     RBtree *left,*right,*parent;
-    rbKeyT key;
+    int key;
     rbColorT color;
 };
 
-RBtree* newNode(rbKeyT key);
+RBtree* newNode(int key);
 
-RBtree* search(RBtree* root, rbKeyT key);
+RBtree* search(RBtree* root, int key);
+bool boolSearch(RBtree* root, int key);
 
 RBtree* rotateLeft(RBtree* root, RBtree* x);
 RBtree* rotateRight(RBtree* root, RBtree* y);
 
-RBtree* insert(RBtree* root, rbKeyT key);
+RBtree* insert(RBtree* root, int key);
 RBtree* insertFixup(RBtree* root, RBtree* x);
 
 RBtree* successor(RBtree* x);
@@ -37,7 +42,9 @@ void inorderTreeWalk(RBtree* root);
 void preorderTreeWalk(RBtree* root);
 void postorderTreeWalk(RBtree* root);
 
-RBtree* deleteByKey (RBtree* root,rbKeyT key);
+RBtree* deleteByKey (RBtree* root,int key);
 RBtree* deleteFixup(RBtree* root,RBtree* x,RBtree* parent);
+
+void readFromFile(RBtree*& root, string &name);
 
 #endif // #ifdef RBTREE_H

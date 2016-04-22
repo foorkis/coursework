@@ -7,33 +7,31 @@ using namespace std;
 
 int main()
 {
-    /*   
+    
     int i, count = 9;
-    rbKeyT key;
+    int key;
     RBtree* root = NULL, *node = NULL;
 
-    for (i = 1; i <= count; ++i)
-    {
-	cout<<" insert 9 keys\n";
-	cin>>key;
-	cout<<i<<" insert key "<<key;
-	root=insert(root,key);
-    }
+ 
+// /*    cout<<" insert 9 keys\n";
+//     for (i = 1; i <= count; ++i)
+//     {
+// 	cin>>key;
+// 	root=insert(root,key);
+//     }
+// */
+//     string s = "foo";
+//     root=insert(root,1);
+//     readFromFile(root,s);
+//     cout << root;
+//     preorderTreeWalk(root);
 
-    preorderTreeWalk(root);
-
-    for (i=1;i<=count;i++)
-    {
-	cin>>key;
-	cout<<i<<" delete key "<<key;
-	root=deleteByKey(root,key);
-    }
-    */
-    // FILE * file;
-    // char buffer [1000];
-
-    // file = fopen("tree_file", "r");
-    // printHelp();
-    printHelp();
+//     for (i=1;i<=count;i++)
+//     {
+// 	cin>>key;
+// 	cout<<" delete key "<<key;
+// 	root=deleteByKey(root,key);
+//     }
+    menu(root);
     return 0;
 }

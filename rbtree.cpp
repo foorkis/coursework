@@ -2,13 +2,14 @@
 #include <iostream>
 
 using namespace std;
+using std::string;
 
 // static NIL node for leafs & root parent
 static RBtree NIL = {0, 0, 0, 0, BLACK};    
 // NIL pointer
 #define PNIL (&NIL)
 
-RBtree* newNode(rbKeyT key)
+RBtree* newNode(int key)
 {
     RBtree* node=new RBtree;
     
@@ -22,7 +23,7 @@ RBtree* newNode(rbKeyT key)
 }
 
 // search function is common for binary trees
-RBtree* search(RBtree* root, rbKeyT key)
+RBtree* search(RBtree* root, int key)
 {
     if (root==PNIL){
         return PNIL;
@@ -43,6 +44,29 @@ RBtree* search(RBtree* root, rbKeyT key)
         }
     }
     return PNIL;
+}
+
+bool boolSearch(RBtree* root, int key)
+{
+    if (root==PNIL){
+        return false;
+    } 
+    else{
+        RBtree* x=root;
+        while (x!=PNIL)
+        {
+            if (key<x->key){
+                x=x->left;
+            } 
+            else if(key>x->key){
+                x=x->right;
+            }
+            else{
+                return true; 
+            }
+        }
+    }
+    return false;
 }
 
 RBtree* rotateLeft(RBtree* root,RBtree* x)
@@ -107,7 +131,7 @@ RBtree* rotateRight(RBtree* root,RBtree* y)
     return root;
 }
 
-RBtree* insert(RBtree* root,rbKeyT key)
+RBtree* insert(RBtree* root,int key)
 {
     RBtree* z=newNode(key);
 
@@ -116,7 +140,6 @@ RBtree* insert(RBtree* root,rbKeyT key)
         root=z;
         root->color=BLACK;
 
-        cout<<" success!"<<'\n';
         return root;
     } 
     else
@@ -136,7 +159,7 @@ RBtree* insert(RBtree* root,rbKeyT key)
             }
             else
             {
-                cout<<" repeated, ignore!"<<'\n';
+                cout<<"key " << key <<" repeated, ignore!"<<'\n';
                 return root;
             }
         }
@@ -154,8 +177,9 @@ RBtree* insert(RBtree* root,rbKeyT key)
         else
         {
             y->right=z;
-        }
+        } 
 
+        cout<<"insert "<< key <<'\n';
         return insertFixup(root,z);
     }
 }
@@ -214,7 +238,6 @@ RBtree* insertFixup(RBtree* root, RBtree* z)
         }
     }
     root->color=BLACK;
-    cout<<" success!"<<'\n';
     return root;
 }
 
@@ -264,6 +287,8 @@ int height(RBtree* root)
     }
 }
 
+
+
 void inorderTreeWalk(RBtree* root)
 {
     RBtree* x=root;
@@ -297,13 +322,13 @@ void postorderTreeWalk(RBtree* root)
     }
 }
 
-RBtree* deleteByKey(RBtree* root,rbKeyT key)
+RBtree* deleteByKey(RBtree* root,int key)
 {
     RBtree* z=search(root,key);
 
     if (z==PNIL)
     {
-        cout<<" doesn't exist!"<<'\n';
+        cout<< "node with key "<< key <<" doesn't exist!"<<'\n';
     } 
     else
     {
@@ -354,7 +379,6 @@ RBtree* deleteByKey(RBtree* root,rbKeyT key)
         }
 
         delete y;
-        cout<<" success!"<<'\n';
     }
     return root;
 }
@@ -447,14 +471,19 @@ RBtree* deleteFixup(RBtree* root,RBtree* x,RBtree* parent)
     root->color=BLACK;
     return root;
 }
-/*
-RBtree* readFromFile()
+
+void readFromFile(RBtree*& root, string &name)
 {
-    FILE* myFile;
-    myFile = fopen("tree_file", "r");
-    if (myFile == NULL) cout << "Error opening file\n";
-    else
-    {
-	while (!feof (myFile))
+    int x;
+    ifstream file(name, ios::in);
+    if (file.good()){
+	    while (true){  
+		file >> x;
+		if(file.eof()) break;
+		root=insert(root, x);
+		file.get();
+	    }
+	    file.close();
+	}
+    else cout << "cannot open file foo\n";
 }
-*/
