@@ -1,5 +1,5 @@
-#ifndef  RBTREE_H
-#define  RBTREE_H
+#ifndef  RBTREE_HPP
+#define  RBTREE_HPP
 
 #include <fstream>
 #include <string>
@@ -46,5 +46,4 @@ RBtree* deleteByKey (RBtree* root,int key);
 RBtree* deleteFixup(RBtree* root,RBtree* x,RBtree* parent);
 
 void readFromFile(RBtree*& root, string &name);
-
-#endif // #ifdef RBTREE_H
+#endif // #ifdef RBTREE_HPP

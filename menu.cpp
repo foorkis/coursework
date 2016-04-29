@@ -1,5 +1,5 @@
 #include <iostream>
-#include "rbtree.h"
+#include "rbtree.hpp"
 
 using std::cin;
 using std::cout;
@@ -34,14 +34,15 @@ RBtree* deleteNode(RBtree*& t)
     t = deleteByKey(t,key);
 }
 
-RBtree* printTree(RBtree* t)
+void printTree(RBtree* t)
 {
     if (t == nullptr)
 	cout << "empty tree";
     else
-	// preorderTreeWalk(t);
+        cout << "height is " << height(t) << "\n";
+        //preorderTreeWalk(t);
 	inorderTreeWalk(t);
-	// postorderTreeWalk(t);
+	//postorderTreeWalk(t);
 }
 
 void search(RBtree* t)

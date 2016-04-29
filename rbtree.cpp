@@ -1,4 +1,4 @@
-#include "rbtree.h"
+#include "rbtree.hpp"
 #include <iostream>
 
 using namespace std;
@@ -139,7 +139,7 @@ RBtree* insert(RBtree* root,int key)
     {
         root=z;
         root->color=BLACK;
-
+        cout<<"inserted node with key "<< key <<'\n';
         return root;
     } 
     else
@@ -159,7 +159,8 @@ RBtree* insert(RBtree* root,int key)
             }
             else
             {
-                cout<<"key " << key <<" repeated, ignore!"<<'\n';
+                cout << "key " << key
+                     << " repeated, ignore!" << '\n';
                 return root;
             }
         }
@@ -178,8 +179,7 @@ RBtree* insert(RBtree* root,int key)
         {
             y->right=z;
         } 
-
-        cout<<"insert "<< key <<'\n';
+        cout<<"inserted node with key "<< key <<'\n';
         return insertFixup(root,z);
     }
 }
@@ -321,6 +321,7 @@ void postorderTreeWalk(RBtree* root)
         cout<<x->key<<" "<<x->color<<'\n';
     }
 }
+
 
 RBtree* deleteByKey(RBtree* root,int key)
 {
@@ -479,8 +480,9 @@ void readFromFile(RBtree*& root, string &name)
     if (file.good()){
 	    while (true){  
 		file >> x;
-		if(file.eof()) break;
 		root=insert(root, x);
+		if(file.eof()) break;
+		//root=insert(root, x);
 		file.get();
 	    }
 	    file.close();
